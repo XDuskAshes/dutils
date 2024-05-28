@@ -1,0 +1,10 @@
+{
+    "url":"https://raw.githubusercontent.com/XDuskAshes/dutils/master/util/",
+    "utils":{
+        "Cat":"cat.lua",
+        "Head":"head.lua",
+        "Httpoke":"httpoke.lua",
+        "Path Attributes (pa)":"pa.lua",
+        "Touch":"touch.lua"
+    }
+}
