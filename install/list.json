@@ -4,7 +4,7 @@
         "Cat":"cat.lua",
         "Head":"head.lua",
         "Httpoke":"httpoke.lua",
-        "Path Attributes (pa)":"pa.lua",
+        "Stat":"stat.lua",
         "Touch":"touch.lua"
     }
 }
