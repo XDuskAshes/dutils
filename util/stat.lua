@@ -1,6 +1,6 @@
 local args = {...}
 local util = {}
-util.name = "pa"
+util.name = "stat"
 util.description = "Displays path attributes."
 util.usage = util.name.." <path>"
 
