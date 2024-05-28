@@ -22,7 +22,7 @@ if allspace(utildir) then
     printError("Provided nothing, creating /util/ for installations.")
     utildir = "/util/"
 end
-write("Add a /startup.lua file to set path on each startup? [Y/N] ")
+write("Add a /startup.lua file to set path on each startup?\nNote: This will not work if it already exists. [Y/N] ")
 while true do
     local event = {os.pullEvent()}
     local nEvent = event[1]
@@ -47,23 +47,27 @@ end
 print("Starting installation.")
 
 for k,v in pairs(data.utils) do
-    write("Installing "..k.."...")
+    if fs.exists(utildir..v) then
+        print(k.." already exists, skipping...")
+    else
+        write("Installing "..k.."...")
 
-    local handle = http.get(data.url..v)
-    if not handle then
-        error("Cannot get: "..data.url..v)
+        local handle = http.get(data.url..v)
+        if not handle then
+            error("Cannot get: "..data.url..v)
+        end
+        local fullFile = handle.readAll()
+        handle.close()
+
+        local utilHandle = fs.open(shell.resolve(utildir..v),"w")
+        utilHandle.write(fullFile)
+        utilHandle.close()
+
+        print("done")
     end
-    local fullFile = handle.readAll()
-    handle.close()
-
-    local utilHandle = fs.open(shell.resolve(utildir..v),"w")
-    utilHandle.write(fullFile)
-    utilHandle.close()
-
-    print("done")
 end
 
-if startup then
+if startup and not fs.exists("/startup.lua") then
     write("Making startup...")
     local handle = fs.open("/startup.lua","w")
     handle.write("local oPath = shell.path()\nshell.setPath(oPath..':"..utildir.."')")
