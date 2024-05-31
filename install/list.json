@@ -5,6 +5,7 @@
         "Head":"head.lua",
         "Httpoke":"httpoke.lua",
         "Stat":"stat.lua",
-        "Touch":"touch.lua"
+        "Touch":"touch.lua",
+        "Echo":"echo.lua"
     }
 }
